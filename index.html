@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloxified Hub - Roblox Scripts & Gaming Content</title>
+    <meta name="description" content="Discover the best Roblox scripts, gaming content, and join our community. Auto-farm systems, teleportation scripts, and more!">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --purple: hsl(270, 100%, 67%);
+            --teal: hsl(180, 100%, 50%);
+            --dark-bg: hsl(270, 100%, 5%);
+            --card-bg: hsl(270, 100%, 10%);
+            --text-light: hsl(0, 0%, 90%);
+            --text-muted: hsl(0, 0%, 70%);
+            --border: hsl(270, 50%, 20%);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, hsl(270, 100%, 8%) 100%);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--purple);
+            text-shadow: 0 0 10px var(--purple);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--teal);
+            text-shadow: 0 0 5px var(--teal);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: radial-gradient(circle at center, hsl(270, 100%, 8%) 0%, var(--dark-bg) 70%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--purple), var(--teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px var(--purple);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px var(--purple), 0 0 15px var(--teal); }
+            to { text-shadow: 0 0 15px var(--purple), 0 0 25px var(--teal); }
+        }
+
+        /* Logo and Social Section */
+        .logo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 3rem 0;
+        }
+
+        .main-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px var(--teal);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .main-logo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--purple);
+            border-color: var(--purple);
+        }
+
+        /* Button */
+        .btn-primary {
+            background: var(--teal);
+            color: var(--dark-bg);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 12px var(--teal);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 25px var(--teal);
+        }
+
+        /* Scripts Section */
+        .scripts-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--purple);
+            text-shadow: 0 0 10px var(--purple);
+        }
+
+        .scripts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .script-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .script-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(180, 100, 255, 0.3);
+            border-color: var(--purple);
+        }
+
+        .script-card h3 {
+            color: var(--teal);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .script-card p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .code-block {
+            background: hsl(270, 100%, 3%);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block pre {
+            color: var(--text-light);
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--purple);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--teal);
+        }
+
+        /* Videos Section */
+        .videos-section {
+            padding: 4rem 0;
+            background: hsl(270, 100%, 3%);
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+            border-color: var(--teal);
+        }
+
+        .video-card h3 {
+            color: var(--teal);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-card p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .platform-badge {
+            display: inline-block;
+            background: var(--purple);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-link {
+            display: inline-block;
+            background: var(--teal);
+            color: var(--dark-bg);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .video-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px var(--teal);
+        }
+
+        /* Footer */
+        .footer {
+            background: hsl(270, 100%, 2%);
+            padding: 3rem 0 1rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--teal);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav { flex-direction: column; gap: 1rem; }
+            .nav-links { gap: 1rem; }
+            .social-links { flex-direction: column; align-items: center; }
+            .scripts-grid { grid-template-columns: 1fr; }
+            .videos-grid { grid-template-columns: 1fr; }
+            .main-logo { width: 100px; height: 100px; }
+        }
+
+        .success-message {
+            background: linear-gradient(45deg, var(--teal), hsl(180, 100%, 40%));
+            color: var(--dark-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .success-message.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">Bloxified Hub</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#scripts">Scripts</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Bloxified Hub</h1>
+            <p>Your ultimate destination for Roblox scripts, gaming content, and community collaboration. Discover powerful scripts, watch gaming videos, and join our growing community!</p>
+            <button class="btn-primary" onclick="scrollToSection('scripts')">Explore Scripts</button>
+        </div>
+    </section>
+
+    <!-- Logo and Social Links -->
+    <section class="logo-section">
+        <div class="container">
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAH0AfQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//Z" alt="Bloxified Hub Logo" class="main-logo" onclick="scrollToSection('home')">
+            
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <span>📺</span> YouTube
+                </a>
+                <a href="#" class="social-link">
+                    <span>📱</span> TikTok
+                </a>
+                <a href="#" class="social-link">
+                    <span>📷</span> Instagram
+                </a>
+                <a href="#" class="social-link">
+                    <span>💬</span> Discord
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts Section -->
+    <section id="scripts" class="scripts-section">
+        <div class="container">
+            <h2 class="section-title">🚀 Featured Scripts</h2>
+            <div class="scripts-grid">
+                <!-- Script 1 -->
+                <div class="script-card">
+                    <h3>Auto-Farm System</h3>
+                    <p>Automatically farms resources for players in your Roblox game</p>
+                    <div class="code-block">
+                        <div class="success-message" id="success1">Copied!</div>
+                        <button class="copy-btn" onclick="copyCode('code1', 'success1')">Copy</button>
+                        <pre id="code1">-- Auto-Farm Script
+local function autoFarm(player)
+    while true do
+        wait(1)
+        if player.Character then
+            -- Farming logic here
+            player.leaderstats.Cash.Value += 10
+        end
+    end
+end
+
+game.Players.PlayerAdded:Connect(autoFarm)</pre>
+                    </div>
+                </div>
+
+                <!-- Script 2 -->
+                <div class="script-card">
+                    <h3>Teleport System</h3>
+                    <p>Teleport players between different locations</p>
+                    <div class="code-block">
+                        <div class="success-message" id="success2">Copied!</div>
+                        <button class="copy-btn" onclick="copyCode('code2', 'success2')">Copy</button>
+                        <pre id="code2">-- Teleport Script
+local teleportParts = workspace.TeleportParts:GetChildren()
+
+for _, part in ipairs(teleportParts) do
+    part.Touched:Connect(function(hit)
+        local player = game.Players:GetPlayerFromCharacter(hit.Parent)
+        if player then
+            player.Character.HumanoidRootPart.CFrame = CFrame.new(0, 50, 0)
+        end
+    end)
+end</pre>
+                    </div>
+                </div>
+
+                <!-- Script 3 -->
+                <div class="script-card">
+                    <h3>Day/Night Cycle</h3>
+                    <p>Dynamic lighting system for day/night transitions</p>
+                    <div class="code-block">
+                        <div class="success-message" id="success3">Copied!</div>
+                        <button class="copy-btn" onclick="copyCode('code3', 'success3')">Copy</button>
+                        <pre id="code3">-- Day/Night Cycle
+local lighting = game:GetService("Lighting")
+local cycleLength = 120 -- seconds
+
+while true do
+    for i = 0, cycleLength do
+        lighting.ClockTime = 24 * (i/cycleLength)
+        wait(1)
+    end
+end</pre>
+                    </div>
+                </div>
+
+                <!-- Script 4 -->
+                <div class="script-card">
+                    <h3>Kill Brick</h3>
+                    <p>Instantly kills players when touched</p>
+                    <div class="code-block">
+                        <div class="success-message" id="success4">Copied!</div>
+                        <button class="copy-btn" onclick="copyCode('code4', 'success4')">Copy</button>
+                        <pre id="code4">-- Kill Brick
+script.Parent.Touched:Connect(function(hit)
+    local humanoid = hit.Parent:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid.Health = 0
+    end
+end)</pre>
+                    </div>
+                </div>
+
+                <!-- Script 5 -->
+                <div class="script-card">
+                    <h3>GUI Shop System</h3>
+                    <p>Interactive shop interface for players</p>
+                    <div class="code-block">
+                        <div class="success-message" id="success5">Copied!</div>
+                        <button class="copy-btn" onclick="copyCode('code5', 'success5')">Copy</button>
+                        <pre id="code5">-- GUI Shop System
+local shopItems = {
+    {Name = "Sword", Price = 100},
+    {Name = "Shield", Price = 75}
+}
+
+script.Parent.MouseButton1Click:Connect(function()
+    for _, item in pairs(shopItems) do
+        -- Create buttons for each item
+    end
+end)</pre>
+                    </div>
+                </div>
+
+                <!-- Script 6 -->
+                <div class="script-card">
+                    <h3>Random Loot Drops</h3>
+                    <p>Random item generator for enemy drops</p>
+                    <div class="code-block">
+                        <div class="success-message" id="success6">Copied!</div>
+                        <button class="copy-btn" onclick="copyCode('code6', 'success6')">Copy</button>
+                        <pre id="code6">-- Random Loot
+local lootTable = {"Coin", "Gem", "Potion", "Key"}
+
+local function dropLoot(position)
+    local randomLoot = lootTable[math.random(1, #lootTable)]
+    local loot = Instance.new("Part")
+    loot.Name = randomLoot
+    loot.Position = position
+    loot.Parent = workspace
+end</pre>
+                    </div>
+                </div>
+
+                <!-- Script 7 -->
+                <div class="script-card">
+                    <h3>Leaderboard System</h3>
+                    <p>Tracks and displays player stats</p>
+                    <div class="code-block">
+                        <div class="success-message" id="success7">Copied!</div>
+                        <button class="copy-btn" onclick="copyCode('code7', 'success7')">Copy</button>
+                        <pre id="code7">-- Leaderboard
+game.Players.PlayerAdded:Connect(function(player)
+    local leaderstats = Instance.new("Folder")
+    leaderstats.Name = "leaderstats"
+    leaderstats.Parent = player
+    
+    local cash = Instance.new("IntValue")
+    cash.Name = "Cash"
+    cash.Value = 0
+    cash.Parent = leaderstats
+end)</pre>
+                    </div>
+                </div>
+
+                <!-- Script 8 -->
+                <div class="script-card">
+                    <h3>Vehicle Controller</h3>
+                    <p>Basic vehicle movement system</p>
+                    <div class="code-block">
+                        <div class="success-message" id="success8">Copied!</div>
+                        <button class="copy-btn" onclick="copyCode('code8', 'success8')">Copy</button>
+                        <pre id="code8">-- Vehicle Controller
+local vehicle = script.Parent
+local speed = 50
+
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.W then
+        vehicle.VehicleSeat.Throttle = 1 * speed
+    end
+end)</pre>
+                    </div>
+                </div>
+
+                <!-- Script 9 -->
+                <div class="script-card">
+                    <h3>Health Regeneration</h3>
+                    <p>Gradually restores player health</p>
+                    <div class="code-block">
+                        <div class="success-message" id="success9">Copied!</div>
+                        <button class="copy-btn" onclick="copyCode('code9', 'success9')">Copy</button>
+                        <pre id="code9">-- Health Regen
+game.Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(character)
+        local humanoid = character:WaitForChild("Humanoid")
+        while true do
+            wait(1)
+            if humanoid.Health < humanoid.MaxHealth then
+                humanoid.Health = humanoid.Health + 5
+            end
+        end
+    end)
+end)</pre>
+                    </div>
+                </div>
+
+                <!-- Script 10 -->
+                <div class="script-card">
+                    <h3>Anti-Cheat System</h3>
+                    <p>Basic protection against common exploits</p>
+                    <div class="code-block">
+                        <div class="success-message" id="success10">Copied!</div>
+                        <button class="copy-btn" onclick="copyCode('code10', 'success10')">Copy</button>
+                        <pre id="code10">-- Anti-Cheat
+local maxSpeed = 16 -- Default walkspeed
+
+game.Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(character)
+        local humanoid = character:WaitForChild("Humanoid")
+        humanoid.Changed:Connect(function()
+            if humanoid.WalkSpeed > maxSpeed then
+                player:Kick("Speed exploit detected!")
+            end
+        end)
+    end)
+end)</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section id="videos" class="videos-section">
+        <div class="container">
+            <h2 class="section-title">🎬 Gaming Videos</h2>
+            <div class="videos-grid">
+                <div class="video-card">
+                    <div class="platform-badge">YouTube</div>
+                    <h3>Epic Roblox Gameplay</h3>
+                    <p>Watch amazing Roblox gameplay moments and tutorials</p>
+                    <a href="#" class="video-link">Watch Now</a>
+                </div>
+                
+                <div class="video-card">
+                    <div class="platform-badge">TikTok</div>
+                    <h3>Quick Script Tips</h3>
+                    <p>Short videos with helpful scripting tips and tricks</p>
+                    <a href="#" class="video-link">Watch Now</a>
+                </div>
+                
+                <div class="video-card">
+                    <div class="platform-badge">Instagram</div>
+                    <h3>Behind the Scenes</h3>
+                    <p>See how we create and test our amazing scripts</p>
+                    <a href="#" class="video-link">Watch Now</a>
+                </div>
+                
+                <div class="video-card">
+                    <div class="platform-badge">YouTube</div>
+                    <h3>Script Tutorials</h3>
+                    <p>Learn how to create your own Roblox scripts step by step</p>
+                    <a href="#" class="video-link">Watch Now</a>
+                </div>
+                
+                <div class="video-card">
+                    <div class="platform-badge">TikTok</div>
+                    <h3>Game Highlights</h3>
+                    <p>Best moments from popular Roblox games</p>
+                    <a href="#" class="video-link">Watch Now</a>
+                </div>
+                
+                <div class="video-card">
+                    <div class="platform-badge">Instagram</div>
+                    <h3>Community Features</h3>
+                    <p>Showcasing scripts and creations from our community</p>
+                    <a href="#" class="video-link">Watch Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <p>Join our community of Roblox developers and gamers!</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Support</a>
+            </div>
+            <p>&copy; 2025 Bloxified Hub. Made with ❤️ for the Roblox community.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Copy code functionality
+        function copyCode(codeId, successId) {
+            const codeElement = document.getElementById(codeId);
+            const successElement = document.getElementById(successId);
+            
+            // Create a temporary textarea to copy the text
+            const textarea = document.createElement('textarea');
+            textarea.value = codeElement.textContent;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            
+            // Show success message
+            successElement.classList.add('show');
+            setTimeout(() => {
+                successElement.classList.remove('show');
+            }, 2000);
+        }
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Add click event to navigation links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('href').substring(1);
+                scrollToSection(sectionId);
+            });
+        });
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.script-card, .video-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Add click effect to logo
+            const logo = document.querySelector('.main-logo');
+            logo.addEventListener('click', function() {
+                this.style.transform = 'scale(1.2) rotate(360deg)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 600);
+            });
+
+            // Add floating animation to hero title
+            const heroTitle = document.querySelector('.hero h1');
+            let floatDirection = 1;
+            setInterval(() => {
+                const currentTransform = heroTitle.style.transform || 'translateY(0px)';
+                const currentY = parseFloat(currentTransform.match(/translateY\(([^)]+)px\)/) || [0, 0])[1];
+                const newY = currentY + (floatDirection * 2);
+                
+                if (Math.abs(newY) > 10) {
+                    floatDirection *= -1;
+                }
+                
+                heroTitle.style.transform = `translateY(${newY}px)`;
+            }, 100);
+        });
+
+        // Add some sparkle effect (optional)
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'fixed';
+            sparkle.style.width = '4px';
+            sparkle.style.height = '4px';
+            sparkle.style.backgroundColor = 'var(--teal)';
+            sparkle.style.borderRadius = '50%';
+            sparkle.style.boxShadow = '0 0 10px var(--teal)';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.zIndex = '1000';
+            
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 3000);
+        }
+
+        // Create sparkles occasionally
+        setInterval(createSparkle, 2000);
+    </script>
+</body>
+</html>
