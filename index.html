@@ -456,11 +456,12 @@
       <!-- Script 1 -->
       <div class="script-card">
         <div class="script-title">Freeze Trade</div>
-        <div class="script-desc">Freezes the victims screen and locks its movement including the main gui, useful if you want to take a lot of pets in the new trading update</div>
-        <div class="script-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/grow-a-garden-ctrl/FreezeTrade/refs/heads/main/Bloxified"))();</div>
+        <div class="script-desc">A very powerful UI that spawns pets, freeze trade, duplicate pets, resize pets, increase mooncat passives hitbox and an Egg Detector with randomizer that can change the content/pet inside the egg.</div>
+        <div class="script-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/grow-a-garden-ctrl/Bloxified/refs/heads/main/scripts.lua"))();</div>
         <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
       </div>
-
+    </div>
+    
     <!-- Featured Video Slot -->
     <a href="https://youtu.be/w6N-IO_zwRg" target="_blank" class="featured-video">
       <img src="https://img.youtube.com/vi/w6N-IO_zwRg/maxresdefault.jpg" alt="Featured Video" class="featured-thumb">
@@ -491,12 +492,23 @@
   </footer>
 
   <script>
-    // Toggle scripts section visibility
-    document.getElementById('viewScriptsBtn').addEventListener('click', function() {
+    // Initialize button text based on initial state
+    document.addEventListener('DOMContentLoaded', function() {
       const scriptsSection = document.getElementById('scriptsSection');
-      scriptsSection.style.display = scriptsSection.style.display === 'none' ? 'block' : 'none';
-      this.textContent = scriptsSection.style.display === 'none' ? 
-        'View Bloxified Scripts' : 'Hide Scripts';
+      const viewScriptsBtn = document.getElementById('viewScriptsBtn');
+      
+      // Explicitly set initial display state (in case CSS doesn't load)
+      scriptsSection.style.display = 'none';
+      
+      // Set initial button text
+      viewScriptsBtn.textContent = 'View Bloxified Scripts';
+      
+      // Toggle scripts section visibility
+      viewScriptsBtn.addEventListener('click', function() {
+        scriptsSection.style.display = scriptsSection.style.display === 'none' ? 'block' : 'none';
+        this.textContent = scriptsSection.style.display === 'none' ? 
+          'View Bloxified Scripts' : 'Hide Scripts';
+      });
     });
 
     // Copy script function
@@ -509,6 +521,8 @@
           button.textContent = 'Copy Script';
           button.classList.remove('copied');
         }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
       });
     }
   </script>
